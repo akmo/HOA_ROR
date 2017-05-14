@@ -6,3 +6,5 @@
 # For example, setting:
 # GMAIL_USERNAME: 'Your_Gmail_Username'
 # makes 'Your_Gmail_Username' available as ENV["GMAIL_USERNAME"]
+DB_USER: "username"
+DB_PASS: "password"
