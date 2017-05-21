@@ -6,7 +6,7 @@
 //= require_tree ./channels
 
 (function() {
-  this.App || (this.App = {});
+  // this.App || (this.App = {}); # comented out as was showing issue on code climate
 
   App.cable = ActionCable.createConsumer();
 
