@@ -13,3 +13,89 @@
  *= require_tree .
  *= require_self
  */
+ body{
+   margin: 0;
+ }
+
+ .site {
+   padding: 1em;
+   max-width: 80%;
+   margin: auto;
+ }
+
+ @media only screen and (max-width: 1000px) {
+     .site {
+       max-width: 100% !important;
+     }
+ }
+
+@media only screen and (max-width: 1200px) {
+     .site {
+       max-width: 90% !important;
+     }
+ }
+
+ @supports (grid-area: auto) {
+   .site{
+     display: grid;
+     grid-template-rows: 4fr 4fr 4fr;
+     grid-template-columns: 2fr 1fr 1fr;
+     grid-template-areas:
+     "title title title"
+     "main header header"
+     "main sidebar footer";
+   }
+
+   @media only screen and (max-width: 1200px) {
+     .site{
+       display: grid;
+       grid-template-rows: 1fr 1fr 4fr 1fr;
+       grid-template-columns: 1fr 1fr;
+       grid-template-areas:
+       "title title"
+       "header header"
+       "main main"
+       "sidebar footer";
+     }
+   }
+
+   @media only screen and (max-width: 1000px) {
+     .site{
+       display: grid;
+       grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+       grid-template-columns: 1fr;
+       grid-template-areas:
+       "title"
+       "header"
+       "main"
+       "sidebar"
+       "footer";
+     }
+   }
+
+   .a{
+     grid-area: title;
+     background: red;
+   }
+
+   .b{
+     grid-area: main;
+     background: blue;
+   }
+
+   .c{
+     grid-area: header;
+     background: green;
+   }
+
+   .d{
+     grid-area: sidebar;
+     background: yellow;
+   }
+
+   .e{
+     grid-area: footer;
+     background: black;
+     color: red
+   }
+ }
