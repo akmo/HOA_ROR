@@ -1,0 +1,26 @@
+language: ruby
+
+dist: trusty
+sudo: false
+
+rvm:
+  - 2.4.1
+
+matrix:
+  include:
+    # Rails 5.x only supports 2.2+
+    - rvm: 2.4.1
+      env: RAILS_VERSION=master
+    - rvm: 2.4.1
+      env: RAILS_VERSION=5-0-stable
+    - rvm: 2.4.1
+      env: RAILS_VERSION=5.1.0
+
+branches:
+  only:
+    - master
+    - staging
+script:
+  - rails db:create RAILS_ENV=test
+  - rails db:migrate RAILS_ENV=test
+  - rails
