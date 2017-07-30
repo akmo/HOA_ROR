@@ -21,6 +21,6 @@ branches:
     - master
     - staging
 script:
-  - rails db:create RAILS_ENV=test
-  - rails db:migrate RAILS_ENV=test
-  - rails
+  - bin/rake db:create RAILS_ENV=test
+  - bin/rake db:migrate RAILS_ENV=test
+  - bin/rake
