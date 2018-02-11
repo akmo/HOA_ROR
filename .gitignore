@@ -20,6 +20,7 @@
 # Ignore Byebug command history file.
 .byebug_history
 
-# Ignoring /config/local_env.yml 
+# Ignoring /config/local_env.yml
 /config/local_env.yml
 db/schema.rb
+.vagrant

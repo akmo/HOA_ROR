@@ -12,9 +12,9 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  # config.ssh.username = 'vagrant'
-  # config.ssh.password = 'vagrant'
-  # config.ssh.insert_key = true
+  config.ssh.username = 'vagrant'
+  config.ssh.password = 'vagrant'
+  config.ssh.insert_key = true
   config.vm.box = "ubuntu/trusty64"
   config.vm.synced_folder ".", "/vagrant"
   # Disable automatic box update checking. If you disable this, then
@@ -25,7 +25,7 @@ Vagrant.configure("2") do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  config.vm.network "forwarded_port", guest: 80, host: 3000
+  # config.vm.network "forwarded_port", guest: 80, host: 3000
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -72,18 +72,15 @@ Vagrant.configure("2") do |config|
     echo 'deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main' | sudo tee /etc/apt/sources.list.d/pgdg.list
 
     wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
+    sudo apt-add-repository -y ppa:rael-gc/rvm
 
     sudo apt-get update
-    sudo apt-get install -y \
-     postgresql \
-     libpq-dev
-
+    sudo apt-get install -y postgresql libpq-dev nodejs software-properties-common rvm
     sudo -u postgres psql -c "create user vagrant with password 'vagrant';"
-    sudo -u postgres psql -c "alter user vagrant with superuser;"
-    sudo apt-get install -y nodejs
-
-    gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-    curl -sSL https://get.rvm.io | bash -s stable
-
+    sudo -u postgres psql -c "alter user vagrant with superuser;" 
+    sudo chown vagrant /usr/share/rvm
+    # gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+    # curl -sSL https://get.rvm.io | bash -s stable
+    ln -s /vagrant/ akmo
   SHELL
 end
